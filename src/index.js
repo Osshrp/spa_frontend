@@ -1,2 +1,2 @@
-console.log("1");
+console.log("1333");
 alert("adads");
