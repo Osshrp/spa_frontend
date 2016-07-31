@@ -2,9 +2,7 @@ var path = require('path');
 var webpack = require('webpack')
 module.exports = {
     entry: [
-        //'webpack-dev-server/client?http://0.0.0.0:4000',
         'webpack-hot-middleware/client?reload=true',
-        //'webpack/hot/only-dev-server',
         './src/index.js',
     ],
     output: {
