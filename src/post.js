@@ -13,8 +13,8 @@ var Post = React.createClass({
     var newsNodes = this.props.news.map(function(item, key) {
       return (
         <div key = {key}>
-          <p>{item.name}:</p>
-          <p>{item.description}</p>
+          <p>{item.username}:</p>
+          <p>{item.title}</p>
         </div>
       )
     })
