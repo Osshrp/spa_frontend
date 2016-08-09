@@ -12,30 +12,29 @@ import 'whatwg-fetch'
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { data: []}
+    this.state = { posts: []}
   }
 
-  // loadPosts() {
+  loadPosts() {
     fetch('http://localhost:3000/api/posts', {mode: 'cors'})
-    .then(function(response) {
+    .then(response => {
       return response.json()
-    }).then(function(json) {
-      this.setState({data: json})
-
-      console.log('parsed json', json)
-      // alert(json[0].title)
-    }).catch(function(ex) {
-      console.log('parsing failed', ex)
+    }).then(posts => {
+      console.log('Posts:', posts)
+      this.setState({posts: posts})
+      console.log('parsed json', posts)
+    }).catch(err => {
+      console.log('parsing failed:', err)
     })
-  // }
+  }
 
-  // componentDidMount() {
-  //   this.loadPosts()
-  // }
+  componentDidMount() {
+    this.loadPosts()
+  }
   render() {
     return (
       <div>
-        <Post news = {this.state.data} />
+        <Post news = {this.state.posts} />
         <PostForm />
       </div>
     )
