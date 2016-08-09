@@ -8,15 +8,16 @@ class PostForm extends React.Component {
                    title: '',
                    body: ''
                  }
-    // this.onClickHandler = () => this.onClickHandler()
   }
 
   // onChangeHandler(e) {
   //   this.setState({myValue: e.target.value})
   // }
 
-  onClickHandler(e) {
-      alert(e)
+  onClickHandler() {
+      alert(this.refs.author.value)
+      alert(this.refs.title.value)
+      alert(this.refs.body.value)
       // e.priventDefault()
       console.log(this.refs.author.value)
       // alert(ReactDOM.findDOMNode(this.refs.author).value)
@@ -46,8 +47,7 @@ class PostForm extends React.Component {
         ></textarea>
         <button
           className='add__btn'
-          onClick={this.onClickHandler.bind(this)}
-          ref='alert_button'>
+          onClick={(event) => this.onClickHandler(event)}>
           Отправить
         </button>
       </form>
