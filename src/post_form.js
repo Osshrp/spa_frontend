@@ -1,33 +1,30 @@
-import React from 'react';
+import React from 'react'
 // import ReactDOM from 'react-dom'
 
 class PostForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { author: '',
+    this.state = { username: '',
                    title: '',
                    body: ''
                  }
   }
 
-  // onChangeHandler(e) {
-  //   this.setState({myValue: e.target.value})
-  // }
-
-  onClickHandler() {
-      alert(this.refs.author.value)
-      alert(this.refs.title.value)
-      alert(this.refs.body.value)
-      // e.priventDefault()
-      console.log(this.refs.author.value)
-      // alert(ReactDOM.findDOMNode(this.refs.author).value)
-    // alert(ReactDOM.findDOMNode(this.refs.author).value)
-    
+  handleSubmit(event) {
+    event.preventDefault()
+    var author = this.refs.author.value.trim()
+    var title = this.refs.title.value.trim()
+    var body = this.refs.body.value.trim()
+    if (!title || !author) {
+      return
+    }
+    this.props.onPostSubmit({username: author, title: title, body: body})
+    this.setState({author: '', title: '', body: ''})
   }
 
   render() {
     return (
-      <form>
+      <form onSubmit={(event) => this.handleSubmit(event)}>
         <input
           type='text'
           defaultValue=''
@@ -45,14 +42,10 @@ class PostForm extends React.Component {
           placeholder='Текст новости'
           ref='body'
         ></textarea>
-        <button
-          className='add__btn'
-          onClick={(event) => this.onClickHandler(event)}>
-          Отправить
-        </button>
+        <input type='submit' value='Submit'/>
       </form>
     )
   }
 }
 
-export default PostForm;
+export default PostForm

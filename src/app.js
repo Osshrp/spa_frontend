@@ -3,12 +3,6 @@ import Post from './post'
 import PostForm from './post_form'
 import 'whatwg-fetch'
 
-// var posts = [
-//       { id: 1, name: 'Мороз и война', description: 'Дед Мороз вышел на тропу войны' },
-//       { id: 2, name: 'Мороз и Л.Н. Толстой', description: 'Замечен Мороз, читающий "Войну и Мир"' },
-//       { id: 3, name: 'Мороз и топор', description: 'Мороз закопал топор войны' }
-//     ]
-
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -20,9 +14,26 @@ class App extends React.Component {
     .then(response => {
       return response.json()
     }).then(posts => {
-      console.log('Posts:', posts)
       this.setState({posts: posts})
-      console.log('parsed json', posts)
+    }).catch(err => {
+      console.log('parsing failed:', err)
+    })
+  }
+
+  handlePostSubmit(post) {
+    fetch('http://localhost:3000/api/posts', {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(post)
+    })
+    .then(response => {
+      return response.json()
+    }).then(posts => {
+      this.setState({posts: this.state.posts.concat(posts)})
     }).catch(err => {
       console.log('parsing failed:', err)
     })
@@ -35,7 +46,7 @@ class App extends React.Component {
     return (
       <div>
         <Post news = {this.state.posts} />
-        <PostForm />
+        <PostForm onPostSubmit = {(post) => this.handlePostSubmit(post)}/>
       </div>
     )
   }
