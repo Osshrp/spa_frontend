@@ -2,21 +2,22 @@ var path = require('path');
 var webpack = require('webpack')
 module.exports = {
     entry: [
-        'webpack-hot-middleware/client?reload=true',
-        './src/index.js',
+      'whatwg-fetch',
+      'webpack-hot-middleware/client?reload=true',
+      './src/index.js',
     ],
     output: {
-        path: path.join(__dirname, 'build'),
-        filename: 'bundle.js'
+      path: path.join(__dirname, 'build'),
+      filename: 'bundle.js'
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin()
     ],
-     module: {
-        loaders: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loaders: ['react-hot', 'babel-loader', 'eslint-loader']
-        }]
+    module: {
+      loaders: [{
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loaders: ['react-hot', 'babel-loader', 'eslint-loader']
+      }]
     }
 };

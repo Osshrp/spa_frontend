@@ -1,20 +1,21 @@
 import React from 'react'
 
-// class Post extends React.Component {
-var Post = React.createClass({
-  propTypes: {
+class Post extends React.Component {
+
+  static propTypes = {
     news: React.PropTypes.arrayOf(React.PropTypes.shape({
       id: React.PropTypes.number.isRequired,
-      name: React.PropTypes.string.isRequired,
-      description: React.PropTypes.string
+      username: React.PropTypes.string,
+      title: React.PropTypes.string
     }))
-  },
-  render: function() {
+  }
+
+  render() {
     var newsNodes = this.props.news.map(function(item, key) {
       return (
         <div key = {key}>
-          <p>{item.name}:</p>
-          <p>{item.description}</p>
+          <p>{item.username}:</p>
+          <p>{item.title}</p>
         </div>
       )
     })
@@ -24,6 +25,6 @@ var Post = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default Post
