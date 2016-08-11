@@ -3,16 +3,16 @@ import Post from './post'
 import PostForm from './post_form'
 import 'whatwg-fetch'
 
+const server = 'http://localhost:3000/api/posts'
+
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = { posts: []}
-    this.server = 'http://localhost:3000/api/posts'
   }
 
   loadPosts() {
-    // fetch('http://localhost:3000/api/posts', {mode: 'cors'})
-    fetch(this.server, {mode: 'cors'})
+    fetch(server, {mode: 'cors'})
     .then(response => {
       return response.json()
     }).then(posts => {
@@ -23,7 +23,7 @@ class App extends React.Component {
   }
 
   handlePostSubmit(post) {
-    fetch(this.server, {
+    fetch(server, {
       mode: 'cors',
       method: 'POST',
       headers: {
