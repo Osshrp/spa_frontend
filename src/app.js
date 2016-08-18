@@ -3,7 +3,7 @@ import Post from './post'
 import PostForm from './post_form'
 import 'whatwg-fetch'
 
-const server = 'http://localhost:3000/api/posts'
+const server = 'http://52.34.152.41/api/posts'
 
 class App extends React.Component {
   constructor(props) {

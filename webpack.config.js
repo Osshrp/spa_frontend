@@ -4,10 +4,10 @@ module.exports = {
     entry: [
       'whatwg-fetch',
       'webpack-hot-middleware/client?reload=true',
-      './src/index.js',
+      './src/index.js'
     ],
     output: {
-      path: path.join(__dirname, 'build'),
+      path: './build',
       filename: 'bundle.js'
     },
     plugins: [
