@@ -13,9 +13,14 @@ class Post extends React.Component {
   render() {
     var newsNodes = this.props.news.map(function(item, key) {
       return (
-        <div key = {key}>
-          <p>{item.username}:</p>
-          <p>{item.title}</p>
+        <div className='panel panel-default' key = {key}>
+          <div className='panel-heading'>
+            {item.title}
+          </div>
+          <div className='panel-body'>
+            {item.body}
+          </div>
+          <p>{item.username}</p>
         </div>
       )
     })

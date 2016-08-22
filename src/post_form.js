@@ -25,24 +25,38 @@ class PostForm extends React.Component {
   render() {
     return (
       <form onSubmit={(event) => this.handleSubmit(event)}>
-        <input
-          type='text'
-          defaultValue=''
-          placeholder='Ваше имя'
-          ref='author'
-        />
-        <input
-          type='text'
-          defaultValue=''
-          placeholder='Заголовок'
-          ref='title'
-        />
-        <textarea
-          defaultValue=''
-          placeholder='Текст новости'
-          ref='body'
-        ></textarea>
-        <input type='submit' value='Submit'/>
+        <div className='form-group'>
+          <input
+            className='form-control'
+            type='text'
+            defaultValue=''
+            placeholder='Ваше имя'
+            ref='author'
+          />
+        </div>
+        <div className='form-group'>
+          <input
+            className='form-control'
+            type='text'
+            defaultValue=''
+            placeholder='Заголовок'
+            ref='title'
+          />
+        </div>
+        <div className='form-group'>
+          <textarea
+            className='form-control'
+            defaultValue=''
+            placeholder='Текст новости'
+            ref='body'>
+          </textarea>
+        </div>
+        <div className='form-group'>
+          <input 
+            className='btn btn-primary'
+            type='submit' value='Submit'
+          />
+        </div>
       </form>
     )
   }

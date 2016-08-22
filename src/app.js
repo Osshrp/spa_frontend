@@ -47,9 +47,11 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Post news = {this.state.posts} />
-        <PostForm onPostSubmit = {(post) => this.handlePostSubmit(post)}/>
+      <div className='row'>
+        <div className='col-xs-12'>
+          <Post news = {this.state.posts} />
+          <PostForm onPostSubmit = {(post) => this.handlePostSubmit(post)}/>
+        </div>
       </div>
     )
   }
