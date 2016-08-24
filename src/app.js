@@ -4,6 +4,7 @@ import PostForm from './post_form'
 import 'whatwg-fetch'
 
 const server = 'http://ec2-52-34-152-41.us-west-2.compute.amazonaws.com/api/posts'
+// const server = process.env.BACKEND_IP
 // const server = 'http://localhost:3000/api/posts'
 
 class App extends React.Component {
