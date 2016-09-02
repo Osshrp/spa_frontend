@@ -1,7 +1,7 @@
 import { createStore } from 'redux'
 import rootReducer from '../reducers'
 
-export function configureStore(preloadedState) {
+export default function configureStore(preloadedState) {
   const store = createStore(rootReducer, preloadedState)
 
   if (module.hot) {
