@@ -4,7 +4,11 @@ import { Provider } from 'react-redux'
 import App from './app'
 import configureStore from './store/configureStore.js'
 
-const store = configureStore()
+export const store = configureStore()
+
+store.subscribe(() =>
+  console.log(store.getState())
+)
 
 ReactDOM.render(
   <Provider store={store}>

@@ -2,8 +2,8 @@ import React from 'react'
 import Post from './post'
 import PostForm from './post_form'
 import 'whatwg-fetch'
-// import addPost from './actions/postActions.js'
-// import {store} from './index.js'
+import {addPost} from './actions/postActions.js'
+import {store} from './index.js'
 
 const server = 'http://ec2-52-34-152-41.us-west-2.compute.amazonaws.com/api/posts'
 // const server = process.env.BACKEND_IP
@@ -49,8 +49,9 @@ class App extends React.Component {
     this.loadPosts()
   }
 
-  handleTest(event) {
-    event.preventDefault()
+  handleTest() {
+    // event.preventDefault()
+    store.dispatch(addPost('Привет Redux!'))
     // store.subscribe(() =>
     //   console.log(store.getState())
     // )
@@ -63,7 +64,7 @@ class App extends React.Component {
           <Post news = {this.state.posts} />
           <PostForm onPostSubmit = {(post) => this.handlePostSubmit(post)}/>
           <input
-            onClick={(event) => this.handleTest(event)}
+            onClick={() => this.handleTest()}
             className='btn btn-danger'
             type='button' value='test'
           />
