@@ -4,6 +4,7 @@ import PostForm from './post_form'
 import 'whatwg-fetch'
 import {addPost} from './actions/postActions.js'
 import {store} from './index.js'
+import { connect } from 'react-redux'
 
 const server = 'http://ec2-52-34-152-41.us-west-2.compute.amazonaws.com/api/posts'
 // const server = process.env.BACKEND_IP
@@ -52,6 +53,7 @@ class App extends React.Component {
   handleTest() {
     // event.preventDefault()
     store.dispatch(addPost('Привет Redux!'))
+
     // store.subscribe(() =>
     //   console.log(store.getState())
     // )
@@ -74,4 +76,10 @@ class App extends React.Component {
   }
 }
 
-export default App
+function mapStateToProps (state) {
+  return {
+    news: state
+  }
+}
+
+export default connect(mapStateToProps)(App)

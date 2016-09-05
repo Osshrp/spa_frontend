@@ -5,7 +5,6 @@ const preloadedState = {
 }
 
 export default function post(state = preloadedState, action) {
-  console.log('Hello Redux!')
   switch (action.type) {
     case ADD_POST:
       return Object.assign({}, state, action.text)
