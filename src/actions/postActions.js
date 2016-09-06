@@ -1,3 +1,5 @@
+import {server} from '../app'
+
 export const ADD_POST = 'ADD_POST'
 
 export function addPost(text) {
@@ -5,6 +7,39 @@ export function addPost(text) {
     type: ADD_POST,
     text: text
   }
+}
+
+export function postsReceived(posts) {
+  return {
+    type: 'GET_POSTS',
+    posts: posts
+  }
+}
+
+export function getPosts() {
+  return(dispatch) => {
+    dispatch({
+      type: 'GET_POSTS_REQUEST'
+    })
+
+    fetch(server, {
+      method: 'GET'
+    })
+      // .then((response) => _handleErrors(response, dispatch))
+      .then((response) => response.json() )
+      .then((json) => {
+        dispatch({
+          type: 'GET_POSTS_SUCCESS',
+          posts: postsReceived(json)
+        })
+      })
+
+    // dispatch({
+    //   type: 'GET_POSTS_SUCCESS'
+
+    // })
+  }
+}
 
   // fetch(server, {
   //     mode: 'cors',
@@ -22,4 +57,3 @@ export function addPost(text) {
   //   }).catch(err => {
   //     console.log('parsing failed:', err)
   //   })
-}
