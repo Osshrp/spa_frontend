@@ -1,10 +1,12 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
 import Post from './post'
 import PostForm from './post_form'
 import 'whatwg-fetch'
 import {uploadPost} from './actions/postActions.js'
 import {store} from './index.js'
 import {connect} from 'react-redux'
+import * as postActions from './actions/postActions'
 
 export const server = 'http://ec2-52-34-152-41.us-west-2.compute.amazonaws.com/api/posts'
 // const server = process.env.BACKEND_IP
@@ -16,38 +18,40 @@ class App extends React.Component {
     this.state = { posts: []}
   }
 
-  loadPosts() {
-    fetch(server)
-    .then(response => {
-      return response.json()
-    }).then(posts => {
-      this.setState({posts: posts})
-    }).catch(err => {
-      console.log('parsing failed:', err)
-    })
-  }
+  // loadPosts() {
+  //   fetch(server)
+  //   .then(response => {
+  //     return response.json()
+  //   }).then(posts => {
+  //     this.setState({posts: posts})
+  //   }).catch(err => {
+  //     console.log('parsing failed:', err)
+  //   })
+  // }
 
-  handleTest(post) {
-    fetch(server, {
-      mode: 'cors',
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(post)
-    })
-    .then(response => {
-      return response.json()
-    }).then(posts => {
-      this.setState({posts: this.state.posts.concat(posts)})
-    }).catch(err => {
-      console.log('parsing failed:', err)
-    })
-  }
+  // handleTest(post) {
+  //   fetch(server, {
+  //     mode: 'cors',
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(post)
+  //   })
+  //   .then(response => {
+  //     return response.json()
+  //   }).then(posts => {
+  //     this.setState({posts: this.state.posts.concat(posts)})
+  //   }).catch(err => {
+  //     console.log('parsing failed:', err)
+  //   })
+  // }
 
   componentDidMount() {
-    this.loadPosts()
+    // this.loadPosts()
+    // store.dispatch(receivePosts())
+    this.props.receivePosts()
   }
 
   handlePostSubmit(post) {
@@ -56,10 +60,12 @@ class App extends React.Component {
   }
 
   render() {
+    const { posts } = this.props
+    const { receivePosts } = this.props.postActions
     return (
       <div className='row'>
         <div className='col-xs-12'>
-          <Post news = {this.state.posts} />
+          <Post news = {posts} receivePosts={receivePosts} />
           <PostForm onPostSubmit = {(post) => this.handlePostSubmit(post)}/>
           <input
             onClick={() => this.handleTest()}
@@ -74,8 +80,14 @@ class App extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    news: state
+    posts: state.posts
   }
 }
 
-export default connect(mapStateToProps)(App)
+function mapDispatchToProps(dispatch) {
+  return {
+    postActions: bindActionCreators(postActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

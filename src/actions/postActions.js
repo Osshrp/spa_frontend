@@ -1,11 +1,30 @@
 import {server} from '../app'
 
 export const ADD_POST = 'ADD_POST'
+export const GET_POSTS = 'GET_POSTS'
+
+export function getPosts(posts) {
+  return {
+    type: GET_POSTS,
+    posts: posts
+  }
+}
 
 export function addPost(post) {
   return { 
     type: ADD_POST,
-    post: { id: post.id, title: post.title, body: post.body }
+    post: { id: post.id, title: post.title, body: post.body, author: post.username }
+  }
+}
+
+export function receivePosts() {
+  return function(dispatch) {
+    fetch(server)
+    .then((response) => response.json())
+    .then((json) => {dispatch(addPost(json))
+    }).catch(err => {
+      console.log('parsing failed:', err)
+    })
   }
 }
 

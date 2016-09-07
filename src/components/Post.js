@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-class Post extends React.Component {
+export default class Post extends Component {
 
   // static propTypes = {
   //   news: React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -12,6 +12,7 @@ class Post extends React.Component {
 
   render() {
     console.log('props:', this.props.news)
+    // const { posts } = this.props.news.posts
     var newsNodes = this.props.news.posts.map(function(item, key) {
       return (
         <div className='panel panel-default' key = {key}>
