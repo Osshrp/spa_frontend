@@ -2,7 +2,7 @@ import React from 'react'
 import Post from './post'
 import PostForm from './post_form'
 import 'whatwg-fetch'
-import {addPost} from './actions/postActions.js'
+import {uploadPost} from './actions/postActions.js'
 import {store} from './index.js'
 import {connect} from 'react-redux'
 
@@ -27,7 +27,7 @@ class App extends React.Component {
     })
   }
 
-  handlePostSubmit(post) {
+  handleTest(post) {
     fetch(server, {
       mode: 'cors',
       method: 'POST',
@@ -50,13 +50,9 @@ class App extends React.Component {
     this.loadPosts()
   }
 
-  handleTest() {
+  handlePostSubmit(post) {
     // event.preventDefault()
-    store.dispatch(addPost('Привет Redux!'))
-
-    // store.subscribe(() =>
-    //   console.log(store.getState())
-    // )
+    store.dispatch(uploadPost(post))
   }
 
   render() {
