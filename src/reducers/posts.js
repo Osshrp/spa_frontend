@@ -1,7 +1,6 @@
-import {ADD_POST, GET_POSTS} from '../actions/postActions.js'
+import {ADD_POST, GET_POSTS, DELETE_POST} from '../actions/postActions.js'
 
 const preloadedState = {
-  greeting: 'Hello world',
   posts: []
 }
 
@@ -14,6 +13,9 @@ export default function post(state = preloadedState, action) {
 
     case GET_POSTS:
       return Object.assign({}, state, {posts: action.posts})
+
+    case DELETE_POST:
+      return Object.assign({}, state)
 
     default:
       return state

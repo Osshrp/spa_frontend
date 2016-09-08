@@ -1,6 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
+// import * as postActions from '../actions/postActions'
 
-export default class Post extends Component {
+export default class Post extends React.Component {
+
+  componentDidMount() {
+    this.props.receivePosts()
+  }
 
   // static propTypes = {
   //   news: React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -10,9 +15,14 @@ export default class Post extends Component {
   //   }))
   // }
 
+  handleDeletePost(post) {
+    console.log(post.id)
+  }
+
   render() {
-    console.log('props:', this.props.news)
     // const { posts } = this.props.news.posts
+    console.log('1233333',this.props.removePost)
+
     var newsNodes = this.props.news.posts.map(function(item, key) {
       return (
         <div className='panel panel-default' key = {key}>
@@ -22,7 +32,14 @@ export default class Post extends Component {
           <div className='panel-body'>
             {item.body}
           </div>
-          <p>{item.username}</p>
+          <div>
+            <p>{item.username}</p>
+            <button 
+              className='btn btn-link'
+              onClick={(item) => this.handleDeletePost(item)}>
+              Delete post
+            </button>
+          </div>
         </div>
       )
     })

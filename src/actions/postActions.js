@@ -2,6 +2,7 @@ import {server} from '../app'
 
 export const ADD_POST = 'ADD_POST'
 export const GET_POSTS = 'GET_POSTS'
+export const DELETE_POST = 'DELETE_POST'
 
 export function getPosts(posts) {
   return {
@@ -11,9 +12,16 @@ export function getPosts(posts) {
 }
 
 export function addPost(post) {
-  return { 
+  return {
     type: ADD_POST,
     post: { id: post.id, title: post.title, body: post.body, author: post.username }
+  }
+}
+
+function deletePost(id) {
+  return {
+    type: DELETE_POST,
+    id: id
   }
 }
 
@@ -21,7 +29,7 @@ export function receivePosts() {
   return function(dispatch) {
     fetch(server)
     .then((response) => response.json())
-    .then((json) => {dispatch(addPost(json))
+    .then((json) => {dispatch(getPosts(json))
     }).catch(err => {
       console.log('parsing failed:', err)
     })
@@ -40,6 +48,19 @@ export function uploadPost(post) {
       body: JSON.stringify(post)
     }).then((response) => response.json())
       .then((json) => { dispatch(addPost(json))
+    }).catch(err => {
+      console.log('parsing failed:', err)
+    })
+  }
+}
+
+export function removePost(post) {
+  return function(dispatch) {
+    fetch(server, {
+      method: 'DELETE',
+      body: post.id
+    }).then((response) => response.json())
+      .then((json) => { dispatch(deletePost(json))
     }).catch(err => {
       console.log('parsing failed:', err)
     })

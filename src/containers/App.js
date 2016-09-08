@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Post from '../components/Post'
 import PostForm from '../components/postForm'
 import * as postActions from '../actions/postActions'
 
-class App extends Component {
+class App extends React.Component {
   render() {
     const { posts } = this.props
-    const { receivePosts } = this.props.postActions
+    const { receivePosts, uploadPost } = this.props.postActions
 
     return (
       <div className='row'>
         <div className='col-xs-12'>
           <Post news = {posts} receivePosts={receivePosts} />
-          <PostForm onPostSubmit = {(post) => this.handlePostSubmit(post)}/>
+          <PostForm onPostSubmit = {uploadPost}/>
         </div>
       </div>
     )
