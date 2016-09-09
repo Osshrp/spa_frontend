@@ -14,14 +14,15 @@ export function getPosts(posts) {
 export function addPost(post) {
   return {
     type: ADD_POST,
-    post: { id: post.id, title: post.title, body: post.body, author: post.username }
+    post: { id: post.id, title: post.title, body: post.body, username: post.username }
   }
 }
 
-function deletePost(id) {
+function deletePost(id, key) {
   return {
     type: DELETE_POST,
-    id: id
+    id: id,
+    key: key
   }
 }
 
@@ -54,47 +55,13 @@ export function uploadPost(post) {
   }
 }
 
-export function removePost(post) {
+export function removePost(id, key) {
   return function(dispatch) {
-    fetch(server, {
-      method: 'DELETE',
-      body: post.id
-    }).then((response) => response.json())
-      .then((json) => { dispatch(deletePost(json))
+    fetch(server + '/' + id, {
+      method: 'DELETE'
+    }).then(() => { dispatch(deletePost(id, key))
     }).catch(err => {
       console.log('parsing failed:', err)
     })
   }
 }
-
-// export function postsReceived(posts) {
-//   return {
-//     type: 'GET_POSTS',
-//     posts: posts
-//   }
-// }
-
-// export function getPosts() {
-//   return(dispatch) => {
-//     dispatch({
-//       type: 'GET_POSTS_REQUEST'
-//     })
-
-//     fetch(server, {
-//       method: 'GET'
-//     })
-//       // .then((response) => _handleErrors(response, dispatch))
-//       .then((response) => response.json() )
-//       .then((json) => {
-//         dispatch({
-//           type: 'GET_POSTS_SUCCESS',
-//           posts: postsReceived(json)
-//         })
-//       })
-
-//     // dispatch({
-//     //   type: 'GET_POSTS_SUCCESS'
-
-//     // })
-//   }
-// }

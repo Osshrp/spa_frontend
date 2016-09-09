@@ -1,5 +1,7 @@
 import React from 'react'
-// import * as postActions from '../actions/postActions'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as postActions from '../actions/postActions'
 
 export default class Post extends React.Component {
 
@@ -7,21 +9,8 @@ export default class Post extends React.Component {
     this.props.receivePosts()
   }
 
-  // static propTypes = {
-  //   news: React.PropTypes.arrayOf(React.PropTypes.shape({
-  //     id: React.PropTypes.number.isRequired,
-  //     username: React.PropTypes.string,
-  //     title: React.PropTypes.string
-  //   }))
-  // }
-
-  handleDeletePost(post) {
-    console.log(post.id)
-  }
-
   render() {
-    // const { posts } = this.props.news.posts
-    console.log('1233333',this.props.removePost)
+    const { removePost } = this.props.postActions
 
     var newsNodes = this.props.news.posts.map(function(item, key) {
       return (
@@ -36,7 +25,7 @@ export default class Post extends React.Component {
             <p>{item.username}</p>
             <button 
               className='btn btn-link'
-              onClick={(item) => this.handleDeletePost(item)}>
+              onClick={() => removePost(item.id, key)}>
               Delete post
             </button>
           </div>
@@ -51,4 +40,16 @@ export default class Post extends React.Component {
   }
 }
 
-export default Post
+function mapStateToProps (state) {
+  return {
+    posts: state.posts
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    postActions: bindActionCreators(postActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post)
