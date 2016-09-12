@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack')
+var BACKEND_IP = process.env.BACKEND_IP || 'http://ec2-52-34-152-41.us-west-2.compute.amazonaws.com/api/posts'
 module.exports = {
     entry: [
       'whatwg-fetch',

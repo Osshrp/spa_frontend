@@ -1,8 +1,10 @@
-import {server} from '../app'
+// import {server} from '../app'
 
 export const ADD_POST = 'ADD_POST'
 export const GET_POSTS = 'GET_POSTS'
 export const DELETE_POST = 'DELETE_POST'
+
+const server = 'http://ec2-52-34-152-41.us-west-2.compute.amazonaws.com/api/posts'
 
 export function getPosts(posts) {
   return {
