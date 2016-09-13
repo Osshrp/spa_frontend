@@ -11,7 +11,10 @@ module.exports = {
       filename: 'bundle.js'
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.EnvironmentPlugin([
+        'BACKEND_IP'
+      ])
     ],
     module: {
       loaders: [{

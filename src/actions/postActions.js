@@ -4,7 +4,8 @@ export const ADD_POST = 'ADD_POST'
 export const GET_POSTS = 'GET_POSTS'
 export const DELETE_POST = 'DELETE_POST'
 
-const server = 'http://ec2-52-34-152-41.us-west-2.compute.amazonaws.com/api/posts'
+// const server = 'http://ec2-52-34-152-41.us-west-2.compute.amazonaws.com/api/posts'
+const server = process.env.BACKEND_IP
 
 export function getPosts(posts) {
   return {

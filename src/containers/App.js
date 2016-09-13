@@ -1,7 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Post from '../components/Post'
+import Posts from '../components/Posts'
 import PostForm from '../components/postForm'
 import * as postActions from '../actions/postActions'
 
@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <div className='row'>
         <div className='col-xs-12'>
-          <Post news = {posts} receivePosts={receivePosts} />
+          <Posts news = {posts} receivePosts={receivePosts} />
           <PostForm onPostSubmit = {uploadPost}/>
         </div>
       </div>
