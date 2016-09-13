@@ -1,14 +1,6 @@
 import React from 'react'
-// import ReactDOM from 'react-dom'
 
 class PostForm extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { username: '',
-                   title: '',
-                   body: ''
-                 }
-  }
 
   handleSubmit(event) {
     event.preventDefault()
@@ -19,7 +11,9 @@ class PostForm extends React.Component {
       return
     }
     this.props.onPostSubmit({username: author, title: title, body: body})
-    this.setState({author: '', title: '', body: ''})
+    this.refs.title.value = ''
+    this.refs.body.value = ''
+    this.refs.author.value = ''
   }
 
   render() {
