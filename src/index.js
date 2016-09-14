@@ -19,8 +19,9 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path='/' component={App}>
         <IndexRoute component={Posts}/>
-        <Route path='posts' component={Posts}></Route>
-        <Route path='posts/:id' component={Post}></Route>
+        <Route path='posts' component={Posts}>
+          <Route path='/post/:id' component={Post}></Route>
+        </Route>
       </Route>
       <Route path='*' component={NotFound}/>
     </Router>

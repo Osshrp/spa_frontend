@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Posts from '../components/Posts'
 import * as postActions from '../actions/postActions'
 
-export default class PostsContainer extends React.Component {
+class PostsContainer extends React.Component {
 
   componentDidMount() {
     this.props.receivePosts()
