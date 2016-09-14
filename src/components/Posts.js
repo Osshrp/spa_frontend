@@ -1,17 +1,9 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import * as postActions from '../actions/postActions'
 
 export default class Posts extends React.Component {
 
-  componentDidMount() {
-    this.props.receivePosts()
-  }
-
   render() {
-    const { removePost } = this.props.postActions
-
+    const removePost = this.props.removePost
     var newsNodes = this.props.news.posts.map(function(item, key) {
       return (
         <div className='panel panel-default' key = {key}>
@@ -39,17 +31,3 @@ export default class Posts extends React.Component {
     )
   }
 }
-
-function mapStateToProps (state) {
-  return {
-    posts: state.posts
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    postActions: bindActionCreators(postActions, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Posts)
