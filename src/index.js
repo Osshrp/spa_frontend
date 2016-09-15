@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import App from './containers/App'
-import Posts from './containers/Posts'
-import Post from './components/Post'
+import PostsContainer from './containers/Posts'
+import PostContainer from './containers/Post'
 import NotFound from './components/NotFound'
 import configureStore from './store/configureStore.js'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
@@ -18,10 +18,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path='/' component={App}>
-        <IndexRoute component={Posts}/>
-        <Route path='posts' component={Posts}>
-          <Route path='/post/:id' component={Post}></Route>
-        </Route>
+        <IndexRoute component={PostsContainer}/>
+        <Route path='posts' component={PostsContainer}/>
+        <Route path='/post/:id' component={PostContainer}></Route>
       </Route>
       <Route path='*' component={NotFound}/>
     </Router>

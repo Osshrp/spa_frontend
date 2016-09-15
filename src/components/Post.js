@@ -3,21 +3,22 @@ import React from 'react'
 export default class Post extends React.Component {
 
   render() {
-    const post = this.props.post
+    // const post = this.props.post
+    const post = 'AAAAAAAAAAA'
     console.info('PROPPPPs',this.props.params.id)
     return (
       <div className='panel panel-default'>
         <div className='panel-heading'>
-          {post.title}
+          {post}
         </div>
         <div className='panel-body'>
-          {post.body}
+          {post}
         </div>
         <div>
-          <p>{post.username}</p>
+          <p>{post}</p>
           <button 
             className='btn btn-link'
-            onClick={() => (post.id)}>
+            onClick={() => (post)}>
             Delete post
           </button>
         </div>

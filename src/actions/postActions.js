@@ -5,7 +5,7 @@ export const GET_POSTS = 'GET_POSTS'
 export const DELETE_POST = 'DELETE_POST'
 
 // const server = 'http://ec2-52-34-152-41.us-west-2.compute.amazonaws.com/api/posts'
-const server = process.env.BACKEND_IP
+const server = process.env.BACKEND_IP + '/api/posts'
 
 export function getPosts(posts) {
   return {
@@ -21,10 +21,10 @@ export function addPost(post) {
   }
 }
 
-function deletePost(id, key) {
+function deletePost(key) {
   return {
     type: DELETE_POST,
-    id: id,
+    // id: id,
     key: key
   }
 }
@@ -58,11 +58,11 @@ export function uploadPost(post) {
   }
 }
 
-export function removePost(id, key) {
+export function removePost(key) {
   return function(dispatch) {
-    fetch(server + '/' + id, {
+    fetch(server + '/' + key, {
       method: 'DELETE'
-    }).then(() => { dispatch(deletePost(id, key))
+    }).then(() => { dispatch(deletePost(key))
     }).catch(err => {
       console.log('parsing failed:', err)
     })

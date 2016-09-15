@@ -6,14 +6,11 @@ import * as postActions from '../actions/postActions'
 
 class PostsContainer extends React.Component {
 
-  componentDidMount() {
-    this.props.receivePosts()
-  }
-
   render() {
     const { posts } = this.props
     const { removePost } = this.props.postActions
     const { receivePosts } = this.props.postActions
+    console.log('PPPPPPP', posts.posts[2])
     return (
       <
         Posts news = {posts} 
