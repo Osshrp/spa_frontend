@@ -2,6 +2,7 @@
 
 export const ADD_POST = 'ADD_POST'
 export const GET_POSTS = 'GET_POSTS'
+export const GET_POST = 'GET_POST'
 export const DELETE_POST = 'DELETE_POST'
 
 // const server = 'http://ec2-52-34-152-41.us-west-2.compute.amazonaws.com/api/posts'
@@ -11,6 +12,13 @@ export function getPosts(posts) {
   return {
     type: GET_POSTS,
     posts: posts
+  }
+}
+
+export function getPost(post) {
+  return {
+    type: GET_POST,
+    post: post
   }
 }
 
@@ -34,6 +42,17 @@ export function receivePosts() {
     fetch(server)
     .then((response) => response.json())
     .then((json) => {dispatch(getPosts(json))
+    }).catch(err => {
+      console.log('parsing failed:', err)
+    })
+  }
+}
+
+export function receivePost(id) {
+  return function(dispatch) {
+    fetch(server + '/' + id)
+    .then((response) => response.json())
+    .then((json) => {dispatch(getPost(json))
     }).catch(err => {
       console.log('parsing failed:', err)
     })
