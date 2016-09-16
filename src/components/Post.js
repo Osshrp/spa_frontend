@@ -7,19 +7,17 @@ export default class Post extends React.Component {
   }
 
   render() {
-    // const post = this.props.post
-    const post = 'AAAAAAAAAAA'
-    console.info('PROPPPPs',this.props.post)
+    const post = this.props.news.posts.post
     return (
       <div className='panel panel-default'>
         <div className='panel-heading'>
-          {post.tilte}
+          {post.title}
         </div>
         <div className='panel-body'>
           {post.body}
         </div>
         <div>
-          <p>{post.author}</p>
+          <p>{post.username}</p>
           <button 
             className='btn btn-link'
             onClick={() => (post)}>

@@ -5,7 +5,7 @@ const preloadedState = {
   post: {}
 }
 
-export default function post(state = preloadedState, action) {
+export default function posts(state = preloadedState, action) {
   switch (action.type) {
     case ADD_POST: {
       const newPosts = state.posts.concat(action.post)
@@ -21,6 +21,7 @@ export default function post(state = preloadedState, action) {
     }
 
     case GET_POST: {
+      console.log('SSSSSS', action.post)
       return Object.assign({}, state, {post: action.post})
     }
 

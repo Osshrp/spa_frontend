@@ -8,22 +8,25 @@ class PostContainer extends React.Component {
 
   render() {
     const { receivePost } = this.props.postActions
-    // const post = this.props.posts
+    const posts = this.props
+    console.info('PostContainer this.props.posts', this.props.posts)
     // const post = 'AAAAAAAAAAA'
     console.info('AAAAAAAAAs',this.props.params.id)
-    console.info('sss', this.getState)
     return (
       <
-        Post id = {this.props.params.id}
+        Post
+        id = {this.props.params.id}
         receivePost = {receivePost}
+        news = {posts}
       />
     )
   }
 }
 
 function mapStateToProps (state) {
+  console.info('ssssssss', state)
   return {
-    posts: state.post
+    posts: state.posts
   }
 }
 
