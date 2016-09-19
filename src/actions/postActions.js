@@ -75,9 +75,9 @@ export function uploadPost(post) {
   }
 }
 
-export function removePost(key) {
+export function removePost(key, id) {
   return function(dispatch) {
-    fetch(server + '/' + key, {
+    fetch(server + '/' + id, {
       method: 'DELETE'
     }).then(() => { dispatch(deletePost(key))
     }).catch(err => {

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import App from './containers/App'
 import PostsContainer from './containers/Posts'
 import PostContainer from './containers/Post'
+import PostForm from './components/postForm'
 import NotFound from './components/NotFound'
 import configureStore from './store/configureStore.js'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
@@ -19,7 +20,9 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path='/' component={App}>
         <IndexRoute component={PostsContainer}/>
-        <Route path='posts' component={PostsContainer}/>
+        <Route component={PostForm}>
+          <Route path='posts' component={PostsContainer}/>
+        </Route>
         <Route path='/post/:id' component={PostContainer}></Route>
       </Route>
       <Route path='*' component={NotFound}/>

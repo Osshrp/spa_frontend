@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 export default class Posts extends React.Component {
 
@@ -11,9 +12,9 @@ export default class Posts extends React.Component {
     var newsNodes = this.props.news.posts.map(function(item, key) {
       // key = item.id
       return (
-        <div className='panel panel-default' key = {item.id}>
+        <div className='panel panel-default' key = {key}>
           <div className='panel-heading'>
-            {item.title}
+            <Link to={`/post/${item.id}`}>{item.title}</Link>
           </div>
           <div className='panel-body'>
             {item.body}
@@ -22,7 +23,7 @@ export default class Posts extends React.Component {
             <p>{item.username}</p>
             <button 
               className='btn btn-link'
-              onClick={() => removePost(key)}>
+              onClick={() => removePost(key, item.id)}>
               Delete post
             </button>
           </div>

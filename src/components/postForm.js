@@ -1,4 +1,7 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as postActions from '../actions/postActions'
 
 class PostForm extends React.Component {
 
@@ -7,10 +10,11 @@ class PostForm extends React.Component {
     var author = this.refs.author.value.trim()
     var title = this.refs.title.value.trim()
     var body = this.refs.body.value.trim()
+    const { uploadPost } = this.props.postActions
     if (!title || !author) {
       return
     }
-    this.props.onPostSubmit({username: author, title: title, body: body})
+    uploadPost({username: author, title: title, body: body})
     this.refs.title.value = ''
     this.refs.body.value = ''
     this.refs.author.value = ''
@@ -18,6 +22,8 @@ class PostForm extends React.Component {
 
   render() {
     return (
+      <div>
+      {this.props.children}
       <form onSubmit={(event) => this.handleSubmit(event)}>
         <div className='form-group'>
           <input
@@ -52,8 +58,16 @@ class PostForm extends React.Component {
           />
         </div>
       </form>
+      </div>
     )
   }
 }
 
-export default PostForm
+function mapDispatchToProps(dispatch) {
+  return {
+    postActions: bindActionCreators(postActions, dispatch)
+  }
+}
+
+// export default PostForm
+export default connect(null, mapDispatchToProps)(PostForm)

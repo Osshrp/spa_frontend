@@ -9,9 +9,6 @@ class PostContainer extends React.Component {
   render() {
     const { receivePost } = this.props.postActions
     const posts = this.props
-    console.info('PostContainer this.props.posts', this.props.posts)
-    // const post = 'AAAAAAAAAAA'
-    console.info('AAAAAAAAAs',this.props.params.id)
     return (
       <
         Post
