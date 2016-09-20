@@ -9,7 +9,7 @@ export default class Posts extends React.Component {
 
   render() {
     const removePost = this.props.removePost
-    var newsNodes = this.props.news.posts.map(function(item, key) {
+    var newsNodes = this.props.posts.map(function(item, key) {
       // key = item.id
       return (
         <div className='panel panel-default' key = {key}>

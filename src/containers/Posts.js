@@ -7,12 +7,11 @@ import * as postActions from '../actions/postActions'
 class PostsContainer extends React.Component {
 
   render() {
-    const { posts } = this.props
     const { removePost } = this.props.postActions
     const { receivePosts } = this.props.postActions
     return (
       <
-        Posts news = {posts} 
+        Posts posts = {this.props.posts} 
         receivePosts={receivePosts}
         removePost={removePost}
       />
@@ -22,7 +21,7 @@ class PostsContainer extends React.Component {
 
 function mapStateToProps (state) {
   return {
-    posts: state.posts
+    posts: state.news.posts
   }
 }
 

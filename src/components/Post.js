@@ -7,7 +7,7 @@ export default class Post extends React.Component {
   }
 
   render() {
-    const post = this.props.news.posts.post
+    const post = this.props.news.post
     return (
       <div className='panel panel-default'>
         <div className='panel-heading'>

@@ -5,7 +5,14 @@ const preloadedState = {
   post: {}
 }
 
-export default function posts(state = preloadedState, action) {
+const removePost = (posts, index) => {
+  return [
+    ...posts.slice(0, index),
+    ...posts.slice(index + 1)
+  ]
+}
+
+export default function news(state = preloadedState, action) {
   switch (action.type) {
     case ADD_POST: {
       const newPosts = state.posts.concat(action.post)
@@ -16,12 +23,11 @@ export default function posts(state = preloadedState, action) {
       return Object.assign({}, state, {posts: action.posts})
 
     case DELETE_POST: {
-      state.posts.splice(action.key, 1)
-      return Object.assign({}, state, {posts: state.posts})
+      const modifiedPosts = removePost(state.posts, action.key)
+      return Object.assign({}, state, {posts: modifiedPosts})
     }
 
     case GET_POST: {
-      console.log('SSSSSS', action.post)
       return Object.assign({}, state, {post: action.post})
     }
 

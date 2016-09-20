@@ -21,9 +21,8 @@ class PostContainer extends React.Component {
 }
 
 function mapStateToProps (state) {
-  console.info('ssssssss', state)
   return {
-    posts: state.posts
+    post: state.news.post
   }
 }
 
